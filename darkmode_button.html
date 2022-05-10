@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Darkmode</title>
+
+    <!-- Style Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+
+    <!-- Dibutuhkan jquery karna javascriptnya menggunakan jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Memanggil CSS -->
+    <link rel="stylesheet" href="asset/css/darkmode.css">
+</head>
+
+<body class="bg-darkmode">
+
+    <div class="card mx-auto shadow col-sm-5 fg-darkmode border-darkmode" style="margin-top: 250px;">
+        <div class="card-body text-center">
+            Ini adalah darkmode dengan menggunakan Javascript dan CSS
+            <br>
+            <a href="#" class="text-decoration-none link-darkmode">Click This Link</a>
+            <br>
+            <button class="btn btn-primary btn-darkmode mt-3" id="switchMode">Switch To Dark</button>
+        </div>
+    </div>
+
+    <script>
+        // Jika menemukan key "theme" value darkmode
+        // Maka darkmode = true
+        if (localStorage.getItem('theme')) {
+            $('#switchMode').text('Switch To Light');
+
+            $('.bg-darkmode').toggleClass('bg-dm');
+            $('.fg-darkmode').toggleClass('fg-dm txt-dm').toggleClass('');
+            $('.border-darkmode').toggleClass('border-dm');
+            $('.text-darkmode').toggleClass('txt-dm');
+            $('.btn-darkmode').toggleClass('btn-dm').toggleClass('btn-primary');
+            $('.link-darkmode').toggleClass('link-dm');
+        }
+
+        // Kondisi jika button switch ditekan
+        $('#switchMode').click(function () {
+            $('.bg-darkmode').toggleClass('bg-dm');
+            $('.fg-darkmode').toggleClass('fg-dm txt-dm').toggleClass('');
+            $('.border-darkmode').toggleClass('border-dm');
+            $('.text-darkmode').toggleClass('txt-dm');
+            $('.btn-darkmode').toggleClass('btn-dm').toggleClass('btn-primary');
+            $('.link-darkmode').toggleClass('link-dm');
+
+            if ($('.bg-darkmode').hasClass('bg-dm')) {
+                $('#switchMode').text('Switch To Light');
+                localStorage.setItem('theme', 'darkmode');
+            }else{
+                $('#switchMode').text('Switch To Dark');
+                localStorage.removeItem('theme');
+            }
+        });
+    </script>
+</body>
+</html>
